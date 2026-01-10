@@ -60,7 +60,7 @@ mvn clean test
 ### Cucumber HTML Report
 
 - Generated automatically during test execution
-- Initial output location:
+- Output location:
 
 ```text
 target/cucumber/cucumber.html
