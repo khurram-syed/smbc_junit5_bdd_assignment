@@ -15,7 +15,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.smbc.steps")
 @ConfigurationParameter(
         key = PLUGIN_PROPERTY_NAME,
-        value = "pretty, html:target/reports/cucumber-report.html, json:target/reports/cucumber-report.json")
+        value = "pretty, html:target/reports/index.html, json:target/reports/cucumber-report.json")
 
 public class TestRunner {
 
