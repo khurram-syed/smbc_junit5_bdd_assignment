@@ -1,0 +1,51 @@
+name: Cucumber JUnit5 BDD Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Set up Java 21
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # 3️⃣ Build project and run Cucumber tests
+      - name: Run Cucumber BDD tests
+        run: mvn clean test
+
+      # 4️⃣ Upload Cucumber HTML report (ALWAYS)
+      - name: Upload Cucumber HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-html-report
+          path: target/reports
+          retention-days: 30
+
+      # 5️⃣ Add report info to workflow summary
+      - name: Add report details to summary
+        if: always()
+        run: |
+          echo "## 🥒 Cucumber BDD Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📂 **Report Location:** target/reports" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⬇️ Download the HTML report from the **Artifacts** section of this workflow run." >> $GITHUB_STEP_SUMMARY
