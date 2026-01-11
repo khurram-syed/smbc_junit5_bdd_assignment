@@ -27,15 +27,12 @@ src
 │   │       ├── steps
 │   │       │   └── AnagramSteps.java
 │   │       └── runner
-│   │           └── RunCucumberTest.java
+│   │           └── TestRunner.java
 │   │
 │   └── resources
 │       ├── features
-│       │   └── Anagram_Checker.feature
+│       │   └── AnagramCheck.feature
 │       └── junit-platform.properties
-│
-├── reports
-│   └── cucumber.html
 │
 └── pom.xml
 
